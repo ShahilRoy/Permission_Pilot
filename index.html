@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Permission Pilot</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <aside class="rail">
+        <div class="brand-mark">PP</div>
+        <nav aria-label="Workflow">
+          <a href="#permission" class="rail-link active">Permission</a>
+          <a href="#agent" class="rail-link">Agent</a>
+          <a href="#relay" class="rail-link">Relay</a>
+        </nav>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">MetaMask Smart Account Demo</p>
+            <h1>Permission Pilot</h1>
+          </div>
+          <button id="connectWallet" class="button primary">
+            <span aria-hidden="true">◈</span>
+            Connect MetaMask
+          </button>
+        </header>
+
+        <section class="hero-panel" id="permission">
+          <div class="hero-copy">
+            <p class="eyebrow">Autonomous spending, bounded by user intent</p>
+            <h2>Give an AI agent a capped payment permission instead of your whole wallet.</h2>
+            <p>
+              Permission Pilot demonstrates a user granting a time-boxed spending capability to an AI assistant.
+              The assistant selects a task, prepares a transaction, and submits it through a relayer-style execution flow.
+            </p>
+          </div>
+          <div class="permission-card">
+            <div class="card-heading">
+              <span class="status-dot" id="walletDot"></span>
+              <div>
+                <p>Wallet</p>
+                <strong id="walletLabel">Not connected</strong>
+              </div>
+            </div>
+            <dl>
+              <div>
+                <dt>Budget cap</dt>
+                <dd>$12 USDC</dd>
+              </div>
+              <div>
+                <dt>Expires</dt>
+                <dd>60 minutes</dd>
+              </div>
+              <div>
+                <dt>Allowed action</dt>
+                <dd>Pay approved task only</dd>
+              </div>
+            </dl>
+            <button id="grantPermission" class="button full" disabled>
+              <span aria-hidden="true">✓</span>
+              Grant Spending Permission
+            </button>
+            <p id="permissionStatus" class="microcopy">Connect MetaMask to request a scoped capability.</p>
+          </div>
+        </section>
+
+        <section class="grid" id="agent">
+          <article class="panel">
+            <div class="section-title">
+              <p class="eyebrow">Venice-style private agent</p>
+              <h3>Task candidates</h3>
+            </div>
+            <div class="task-list" id="taskList"></div>
+          </article>
+
+          <article class="panel">
+            <div class="section-title">
+              <p class="eyebrow">Agent reasoning</p>
+              <h3>Selected execution plan</h3>
+            </div>
+            <div class="agent-card">
+              <canvas id="agentCanvas" width="620" height="260" aria-label="Agent planning graph"></canvas>
+              <div class="agent-summary">
+                <strong id="agentDecision">Waiting for permission</strong>
+                <p id="agentReason">The assistant will choose the best task after a scoped wallet capability is granted.</p>
+              </div>
+            </div>
+            <button id="runAgent" class="button full secondary" disabled>
+              <span aria-hidden="true">▶</span>
+              Run Agent Decision
+            </button>
+          </article>
+        </section>
+
+        <section class="panel relay-panel" id="relay">
+          <div class="section-title">
+            <p class="eyebrow">1Shot-style relayed execution</p>
+            <h3>Transaction receipt</h3>
+          </div>
+          <div class="receipt">
+            <div>
+              <span>Request</span>
+              <strong id="relayRequest">Not prepared</strong>
+            </div>
+            <div>
+              <span>Relayer</span>
+              <strong id="relayStatus">Idle</strong>
+            </div>
+            <div>
+              <span>Result</span>
+              <strong id="relayResult">No execution yet</strong>
+            </div>
+          </div>
+          <button id="executeRelay" class="button primary" disabled>
+            <span aria-hidden="true">↗</span>
+            Execute with Relayer
+          </button>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
